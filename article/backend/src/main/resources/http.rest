@@ -13,3 +13,11 @@ Content-Type: application/json
 }
 
 // db와 비교해서 맞게 쓰면 됨 - JSON타입으로 작성
+
+###
+
+DELETE 
+
+###
+
+PUT
