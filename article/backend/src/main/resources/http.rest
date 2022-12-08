@@ -1,0 +1,15 @@
+// Server Port : 8899 로 설정되어있음(spring application.properties)
+GET http://localhost:8899/api/article
+
+###
+
+Post http://localhost:8899/api/article
+Content-Type: application/json
+
+{
+    "subject" : "rest client test",
+    "writer" : "test writer",
+    "content" : "test content"
+}
+
+// db와 비교해서 맞게 쓰면 됨 - JSON타입으로 작성
