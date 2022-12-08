@@ -6,6 +6,7 @@ package com.example.backend.service;
 import com.example.backend.entity.Article;
 import com.example.backend.repository.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,8 +25,8 @@ public class ArticleServiceImpl implements ArticleService{
 
     @Override
     public List<Article> getArticles() {
-        // findAll() : select * from article;
-        return articleRepository.findAll();
+        // findAll() : select * from article Order By id DESC;
+        return articleRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
     }
 
     @Override

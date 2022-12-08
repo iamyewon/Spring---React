@@ -20,16 +20,21 @@ class ArticleService {
     return axios.post(SPRING_URL, article);
   }
   // 하나가져오기
-  getArticleById() {
-    return axios.get(SPRING_URL);
+  getArticleById(articleID) {
+    return axios.get(SPRING_URL + "/" + articleID);
   }
   // 수정하기 -> put
-  updateArticle() {
-    return axios.put(SPRING_URL);
+  // 제목이 바뀔지, 내용이 바뀔지 뭐가 바뀔지 모르고 몇개 바뀔지 모르니까 객체로
+  updateArticle(article) {
+    return axios.put(SPRING_URL, article);
   }
   // 삭제하기
-  deleteArticle() {
-    return axios.delete(SPRING_URL);
+  deleteArticle(articleID) {
+    return axios.delete(SPRING_URL + "/" + articleID);
+    // const deleteArticle = (id) => {
+    // axios.delete("http:localhost:8877/api/article/2");
+    // };
+    // ArticleList의 주소와 맞춰주면 됨
   }
 }
 export default new ArticleService();

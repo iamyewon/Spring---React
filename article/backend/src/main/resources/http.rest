@@ -16,8 +16,9 @@ Content-Type: application/json
 
 ###
 
-DELETE 
+DELETE http://localhost:8899/api/article/2
+// 여기서는 변수 쓸 수 없으니까 get으로 확인하고 직접입력 
 
 ###
 
-PUT
+GET  http://localhost:8899/api/article/10
