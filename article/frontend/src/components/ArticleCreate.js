@@ -7,11 +7,15 @@ const ArticleCreate = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   // app.js에 /:id 라서 id 이름을 쓴 것임 ! ! !
-  console.log(id);
+  // console.log(id);
 
   const [subject, setSubject] = useState("");
   const [writer, setWriter] = useState("");
   const [content, setContent] = useState("");
+
+  // const [article, setArticle] = useState([]);
+  // 이렇게 받아서 setArticle(response.data) 넣어주면
+  // 화면에 뿌리는데는 문제없는데 수정이 안됨
 
   //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -58,11 +62,20 @@ const ArticleCreate = () => {
 
   //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-  // useEffect(() => {
-  //   ArticleService.getArticleById(id).then((response) => {
-  //     console.log(response.data);
-  //   });
-  // }, []);
+  useEffect(() => {
+    // add 일때
+    if (id === "add") {
+      return;
+    } else {
+      // id 값이 들어왔을때 = 수정하는곳 = 정보 띄워줘야함
+      ArticleService.getArticleById(id).then((response) => {
+        // console.log(response.data);
+        setSubject(response.data.subject);
+        setWriter(response.data.writer);
+        setContent(response.data.content);
+      });
+    }
+  }, []);
 
   //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

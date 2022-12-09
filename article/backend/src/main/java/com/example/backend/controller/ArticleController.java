@@ -35,7 +35,6 @@ public class ArticleController {
     }
 
 
-
     // 저장하기 - 자료(subject, writer, content ... )가 넘어오면 받아서 저장
     @PostMapping("/article")
     // 객체 타입(JSON)으로 변수를 가져와서 저장하기 = @RequestBody
@@ -51,26 +50,30 @@ public class ArticleController {
     }
 //   => ArticleServiceImpl의 Delete부분을 참고해서 만들면 됨
 
-
-     @PutMapping("/article/{id}")
-     // id값을 이용해서 기존 자료를 가져와서 react에 표시
-     public void updateArticle(@PathVariable Article article, @PathVariable long id){
-
+     @GetMapping("/article/{id}")
+     public Article getArticleById(@PathVariable long id) {
+        // System.out.println(id);
+        // System.out.println(articleService.getArticleById(id));
+        // => Article(id=10, subject=test1, writer=test1, content=test1, ref=0, ref_step=0, ref_level=0, ip=null, regdate=2022-12-08T12:05:01)
+         return articleService.getArticleById(id);
      }
-
-//     @GetMapping("/article/{id}")
-//     public Article getArticleById(@PathVariable long id) {
-//        // System.out.println(id);
-//        // System.out.println(articleService.getArticleById(id));
-//        // => Article(id=10, subject=test1, writer=test1, content=test1, ref=0, ref_step=0, ref_level=0, ip=null, regdate=2022-12-08T12:05:01)
-//         return articleService.getArticleById(id);
-//     }
 
 //    public void getArticleById(@PathVariable long id) {
 //        System.out.println(id);
 //        System.out.println(articleService.getArticleById(id));
 //    }
     // 디버깅은 이렇게 먼저, void 하고 return 없이 콘솔
+
+
+    @PutMapping("/article/{id}")
+    // id값을 이용해서 기존 자료를 가져와서 react에 표시
+    public Article updateArticle(@RequestBody Article article, @PathVariable long id) {
+        // System.out.println(article);
+        // System.out.println(id);
+        // 가공은 serviceImpl 에서
+        return articleService.updateArticle(article, id);
+    }
+
 
 
 

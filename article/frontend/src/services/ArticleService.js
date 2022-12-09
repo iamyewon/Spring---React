@@ -25,8 +25,9 @@ class ArticleService {
   }
   // 수정하기 -> put
   // 제목이 바뀔지, 내용이 바뀔지 뭐가 바뀔지 모르고 몇개 바뀔지 모르니까 객체로
-  updateArticle(article) {
-    return axios.put(SPRING_URL, article);
+  updateArticle(article, articleID) {
+    return axios.put(SPRING_URL + "/" + articleID, article);
+    // 이 주소로 실행할때 article도 같이 가져가..!
   }
   // 삭제하기
   deleteArticle(articleID) {

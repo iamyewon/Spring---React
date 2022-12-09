@@ -42,7 +42,23 @@ public class ArticleServiceImpl implements ArticleService{
 
     @Override
     public Article updateArticle(Article article, long id) {
-        return null;
+        // article 에도 안에 자료가 많고, id도 넘어오고 ,,
+        // 메모리를 비우고(초기화) 자료를 모두 저장시킬 것..
+        // 생성자를 이용하여 초기화
+        // react js 에서 넘어온 자료를 저장하기 위한 Model(=Entity)을 초기화
+        // 자료 저장을 하기 위해서는 getter, setter 이용해서 임시 메모리에 저장
+        // 저장할때는 get() -> set() 이용해서 저장
+        // db에 저장
+        Article newArticle = new Article();
+        // entity에 있는 Article을 새로 만들어서 초기화
+        newArticle.setId(id);
+        // getId 하면 0이 뜸, get 말고 받아온 id를 넣어주기
+        newArticle.setSubject(article.getSubject());
+        newArticle.setWriter(article.getWriter());
+        newArticle.setContent(article.getContent());
+        // set~은 임시메모리에 저장하는것 / get~은 react에서 받아온 부분
+        return articleRepository.save(newArticle);
+        // 변경을 해서 저장이 됨.
     }
 
     @Override
